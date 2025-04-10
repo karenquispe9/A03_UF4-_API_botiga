@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.accesadades.botiga.Model.Product;
+import com.accesadades.botiga.DomainModel.Product;
 import com.accesadades.botiga.Service.ProductService;
 
 @Controller

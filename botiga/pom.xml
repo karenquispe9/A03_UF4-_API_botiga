@@ -8,7 +8,7 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.iticbcn</groupId>
+	<groupId>com.accesadades</groupId>
 	<artifactId>botiga</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -49,6 +49,11 @@
 
 		<!-- afegit-->
 
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+
 		 <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
 		 <dependency>
             <groupId>org.mapstruct</groupId>
@@ -63,30 +68,52 @@
             <version>2.8.6</version>
         </dependency> 
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		<optional>true</optional>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/jakarta.annotation/ca-parent -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-
-				<!-- afegit-->
-			
-				<configuration>
-					<annotationProcessorPaths>
-					  <path>
-							<groupId>org.mapstruct</groupId>
-						   <artifactId>mapstruct-processor</artifactId>
-							<version>1.6.3</version>
-					  </path>
-					</annotationProcessorPaths>
-			  </configuration>
-			</plugin>
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+			  <annotationProcessorPaths>
+				<path>
+				  <groupId>org.mapstruct</groupId>
+				  <artifactId>mapstruct-processor</artifactId>
+				  <version>1.6.3</version>
+				</path>
+				<path>
+				  <groupId>org.projectlombok</groupId>
+				  <artifactId>lombok</artifactId>
+				</path>
+			  </annotationProcessorPaths>
+			</configuration>
+		  </plugin>
+		  <plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+			  <excludes>
+				<exclude>
+				  <groupId>org.projectlombok</groupId>
+				  <artifactId>lombok</artifactId>
+				</exclude>
+			  </excludes>
+			</configuration>
+		  </plugin>
 		</plugins>
-
-		
-
-	</build>
+	  </build>
 
 </project>

@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.NonNull;
 
 import java.util.Set;
-import com.accesadades.botiga.Model.Product;
+import com.accesadades.botiga.DomainModel.Product;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {

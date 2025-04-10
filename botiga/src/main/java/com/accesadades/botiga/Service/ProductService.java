@@ -2,7 +2,7 @@ package com.accesadades.botiga.Service;
 
 import java.util.Set;
 
-import com.accesadades.botiga.Model.Product;
+import com.accesadades.botiga.DomainModel.Product;
 
 public interface ProductService {
  

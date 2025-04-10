@@ -1,6 +1,6 @@
-package com.accesadades.botiga.Model;
+package com.accesadades.botiga.DomainModel;
 
-import lombok.*;
+import lombok.*; 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
