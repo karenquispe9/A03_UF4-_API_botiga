@@ -1,10 +1,7 @@
 package com.accesadades.botiga.DomainModel;
 
-import lombok.*; 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
