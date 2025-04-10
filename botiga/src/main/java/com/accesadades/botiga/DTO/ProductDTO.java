@@ -10,13 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO {
-    private long product_id;
     private String name;
     private String description;
     private String company;
     private float price;
     private long units;
     private String subcategory;
-    private LocalDateTime creationDate;
-    private LocalDateTime updateDate;
+
+
 }

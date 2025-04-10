@@ -39,5 +39,5 @@ public class Product implements Serializable{
     @JoinColumn(name="subcategory_id")
     private SubCategoria subcategoria;    
 
-    //Fer adequadament les relacions (@OneToOne, etc.) amb aquestes entitats.
+    //(@OneToOne (mappedBy = "categoria")
 }

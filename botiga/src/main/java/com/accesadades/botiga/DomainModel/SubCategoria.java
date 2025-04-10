@@ -1,10 +1,8 @@
 package com.accesadades.botiga.DomainModel;
 
-import lombok.*; 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+
 
 
 @Entity
@@ -45,5 +43,7 @@ public class SubCategoria {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    
 
 }

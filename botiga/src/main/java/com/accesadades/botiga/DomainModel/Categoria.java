@@ -53,5 +53,6 @@ public class Categoria {
     public void setProducte(Product producte) {
         this.producte = producte;
     }
+    
 
 }
