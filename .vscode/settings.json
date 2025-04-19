@@ -1,0 +1,14 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.annotationProcessing.enabled": true,
+  "java.project.preferredBuildSystem": "maven",
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.jdt.ls.vmargs": "-javaagent:${workspaceFolder}/lombok.jar",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "C:/Program Files/Java/jdk-21",  // ← reemplaza esto con tu ruta real
+      "default": true
+    }
+  ]
+}
