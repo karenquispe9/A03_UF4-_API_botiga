@@ -1,18 +1,13 @@
 package com.accesadades.botiga.Repository;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.lang.NonNull;
-
-import java.util.Set;
 import com.accesadades.botiga.DomainModel.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface ProductRepository extends CrudRepository<Product, Long> {
+import java.util.Optional;
+import java.util.Set;
 
-    @Override
-    @NonNull
-    Set<Product> findAll();
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    Optional<Product> findById(Long id);
     Product findByName(String name);
-    Set<Product> findByNameAndPrice(String name, float price);
+    Set<Product> findBySubcategory(String subcategory);
 }

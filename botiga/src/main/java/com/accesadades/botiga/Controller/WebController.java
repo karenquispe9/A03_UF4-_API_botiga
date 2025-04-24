@@ -1,5 +1,6 @@
 package com.accesadades.botiga.Controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class WebController {
  
     @RequestMapping(value = "/catalog")
     public String catalog(Model model) {
-        Set<Product> products = productService.findAllProducts();
+        List<Product> products = productService.findAll(); 
         model.addAttribute("products", products);
         return "catalog";
     }

@@ -4,10 +4,8 @@ import java.util.Set;
 
 import com.accesadades.botiga.DomainModel.Product;
 
-public interface ProductService {
- 
-    Set<Product> findAllProducts();
+public interface ProductService extends Service<Product, Long> {
     Product findProductsByName(String name);
-    Set<Product> findAllProducts(String subcategory);
-    void increasePrice(Object product);
+    Set<Product> findAllProductsBySubcategory(String subcategory);
+    void increasePrice(Product product);
 }

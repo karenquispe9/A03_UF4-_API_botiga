@@ -1,5 +1,7 @@
 package com.accesadades.botiga.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +17,31 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Set<Product> findAllProducts() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
     @Override
-    public Set<Product> findAllProducts(String subcategory) {
-        return null;
+    public Optional<Product> findById(Long id) {
+        return productRepository.findById(id);
+    }
+
+    @Override
+    public void save(Product product) {
+        if (product.getSubcategoria() == null || product.getSubcategoria().getCategoria() == null) {
+            System.out.println("ERROR: El producto necesita categoría y subcategoría.");
+            return;
+        }
+    
+        productRepository.save(product);
+    }
+    
+
+
+
+    @Override
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
     }
 
     @Override
@@ -30,7 +50,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void increasePrice(Object product) {
-    
+    public Set<Product> findAllProductsBySubcategory(String subcategory) {
+        return productRepository.findBySubcategory(subcategory);
+    }
+
+    @Override
+    public void increasePrice(Product product) {
+        // Lógica para aumentar el precio del producto
     }
 }
