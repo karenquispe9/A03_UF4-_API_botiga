@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nou Producte</title>
+    <link th:href="@{/styles/style_new_product.css}" rel="stylesheet" />
+</head>
+<body>
+    <h1>Inserir Nou Producte</h1>
+    <form action="#" th:action="@{/inserirProducte}" th:object="${product}" th:method="post">
+        <div>
+            <label for="name">Nom:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+        </div>
+    
+        <div>
+            <label for="description">Descripció:</label>
+            <input type="text" id="description" th:field="*{description}" required />
+        </div>
+    
+        <div>
+            <label for="company">Empresa:</label>
+            <input type="text" id="company" th:field="*{company}" required />
+        </div>
+    
+        <div>
+            <label for="price">Preu:</label>
+            <input type="number" id="price" th:field="*{price}" step="0.01" required />
+        </div>
+    
+        <div>
+            <label for="units">Unitats:</label>
+            <input type="number" id="units" th:field="*{units}" required />
+        </div>
+    
+        <div>
+            <label for="descCategoria">Descripció Categoria:</label>
+            <input type="text" id="descCategoria" th:field="*{descCategoria}" required />
+        </div>
+    
+        <div>
+            <label for="statusCategoria">Estat Categoria:</label>
+            <input type="text" id="statusCategoria" th:field="*{statusCategoria}" required />
+        </div>
+    
+        <div>
+            <label for="descSubcategoria">Descripció Subcategoria:</label>
+            <input type="text" id="descSubcategoria" th:field="*{descSubcategoria}" required />
+        </div>
+    
+        <div>
+            <label for="statusSubcategoria">Estat Subcategoria:</label>
+            <input type="text" id="statusSubcategoria" th:field="*{statusSubcategoria}" required />
+        </div>
+    
+        <button type="submit">Guardar Producte</button>
+    </form>
+    
+    <p><a class="nav-link" th:href="@{/}">Torna a la pàgina d'inici</a></p>
+</body>
+</html>

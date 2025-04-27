@@ -8,12 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO {
+
     private String name;
     private String description;
     private String company;
     private float price;
     private long units;
-    private String subcategoria;
 
-
+    private CategoriaDTO categoria;       
+    private SubCategoriaDTO subCategoria; 
 }

@@ -1,38 +1,43 @@
 package com.accesadades.botiga.Mapper;
 
-import java.util.Set;
-
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.mapstruct.factory.Mappers;
 
-import com.accesadades.botiga.DomainModel.Product;
 import com.accesadades.botiga.DTO.ProductDTO;
+import com.accesadades.botiga.DomainModel.Product;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-    // @Mapping(target = "name", source = "product.name")
-    // @Mapping(target = "description", source = "product.description")
-    // @Mapping(target = "company", source = "product.company")
-    // @Mapping(target = "price", source = "product.price")
-    // @Mapping(target = "units", source = "product.units")
-    // @Mapping(target = "subcategoria", source = "product.subcategoria.name")
-    ProductDTO  ProductToProductDTO(Product product);
+    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
+    @Mappings({
+        @Mapping(source = "name", target = "name"),
+        @Mapping(source = "description", target = "description"),
+        @Mapping(source = "company", target = "company"),
+        @Mapping(source = "price", target = "price"),
+        @Mapping(source = "units", target = "units"),
+        @Mapping(source = "subcategoria.descSubcategoria", target = "subCategoria"),
+        @Mapping(source = "subcategoria.statusSubcategoria", target = "statusSubcategoria"),
+        @Mapping(source = "subcategoria.categoria.descCategoria", target = "descCategoria"),
+        @Mapping(source = "subcategoria.categoria.statusCategoria", target = "statusCategoria")
+    })
+    ProductDTO productToProductDTO(Product product);
 
-
-    // @Mapping(target = "name", source = "productDTO.name")
-    // @Mapping(target = "description", source = "productDTO.description")
-    // @Mapping(target = "company", source = "productDTO.company")    
-    // @Mapping(target = "price", source = "productDTO.price")
-    // @Mapping(target = "units", source = "productDTO.units")
-    // @Mapping(target = "subcategoria", ignore = true) // Ignoramos el mapeo automático
-    Product ProductDTOToProduct(ProductDTO productDTO);
-
-    Set<ProductDTO> ProductToProductDTO(Set<Product> products);
-    Set<Product> ProductDTOToProduct(Set<ProductDTO> productDTOs);
-
-
-
+    @Mappings({
+        @Mapping(target = "productId", ignore = true),
+        @Mapping(target = "creationDate", ignore = true),
+        @Mapping(target = "updateDate", ignore = true),
+        @Mapping(target = "subcategoria.descSubcategoria", source = "descSubcategoria"),
+        @Mapping(target = "subcategoria.statusSubcategoria", source = "statusSubcategoria"),
+        @Mapping(target = "subcategoria.categoria", ignore = true),
+        @Mapping(target = "name", source = "name"),
+        @Mapping(target = "description", source = "description"),
+        @Mapping(target = "company", source = "company"),
+        @Mapping(target = "price", source = "price"),
+        @Mapping(target = "units", source = "units")
+    })
+    Product productDTOToProduct(ProductDTO productDTO);
 }

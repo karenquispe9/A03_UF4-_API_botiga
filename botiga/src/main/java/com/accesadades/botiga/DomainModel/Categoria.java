@@ -1,25 +1,41 @@
 package com.accesadades.botiga.DomainModel;
 
-import jakarta.persistence.*;
-
+import java.time.LocalDateTime;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "categories")
 public class Categoria {
-     @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categoria")
     private Long id;
 
-    private String nom;
+    @Column(name = "desc_categoria", nullable = false)
+    private String descCategoria;
 
-    // Relació 1 a N amb Subcategoria
+    @Column(name = "status_categoria", nullable = false)
+    private String statusCategoria;
+
+    @Column(name = "creation_at")
+    private LocalDateTime creationAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    // Relació 1 a N amb SubCategoria
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SubCategoria> subcategories;
-
-    // Relació 1 a 1 amb Producte
-    @OneToOne(mappedBy = "categoria")
-    private Product producte;
 
     // Getters i Setters
     public Long getId() {
@@ -30,12 +46,36 @@ public class Categoria {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getDescCategoria() {
+        return descCategoria;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setDescCategoria(String descCategoria) {
+        this.descCategoria = descCategoria;
+    }
+
+    public String getStatusCategoria() {
+        return statusCategoria;
+    }
+
+    public void setStatusCategoria(String statusCategoria) {
+        this.statusCategoria = statusCategoria;
+    }
+
+    public LocalDateTime getCreationAt() {
+        return creationAt;
+    }
+
+    public void setCreationAt(LocalDateTime creationAt) {
+        this.creationAt = creationAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public List<SubCategoria> getSubcategories() {
@@ -45,13 +85,4 @@ public class Categoria {
     public void setSubcategories(List<SubCategoria> subcategories) {
         this.subcategories = subcategories;
     }
-
-    public Product getProducte() {
-        return producte;
-    }
-
-    public void setProducte(Product producte) {
-        this.producte = producte;
-    }
-
 }

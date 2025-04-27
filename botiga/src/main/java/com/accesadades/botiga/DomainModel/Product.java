@@ -1,10 +1,19 @@
 package com.accesadades.botiga.DomainModel;
 
-import lombok.*; 
-import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -17,19 +26,10 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long productId;
 
-    @Column
     private String name;
-
-    @Column
     private String description;
-
-    @Column
     private String company;
-
-    @Column
     private float price;
-
-    @Column
     private long units;
 
     @Column(name = "creation_at")
@@ -38,9 +38,24 @@ public class Product implements Serializable {
     @Column(name = "updated_at")
     private LocalDateTime updateDate;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "subcategory_id")
-    private SubCategoria subcategoria;    
+    // Relació N a 1 amb Categoria
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
+
+    // Relació N a 1 amb SubCategoria
+    @ManyToOne
+    @JoinColumn(name = "subcategoria_id", nullable = false)
+    private SubCategoria subcategoria;
+
+    // Getters i Setters manuals si vols accedir-hi per separat
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public SubCategoria getSubcategoria() {
         return subcategoria;
@@ -48,13 +63,5 @@ public class Product implements Serializable {
 
     public void setSubcategoria(SubCategoria subcategoria) {
         this.subcategoria = subcategoria;
-    }
-
-    // Si necesitas trabajar con la categoría (relación ManyToOne dentro de SubCategoria)
-    public Categoria getCategoria() {
-        if (this.subcategoria != null) {
-            return this.subcategoria.getCategoria(); // Esto asume que la clase SubCategoria tiene un método getCategoria()
-        }
-        return null;
     }
 }
