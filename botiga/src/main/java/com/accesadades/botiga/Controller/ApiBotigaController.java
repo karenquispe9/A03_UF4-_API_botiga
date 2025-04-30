@@ -39,7 +39,7 @@ public class ApiBotigaController {
     }
     @PostMapping("/inserirProducte")
     public ResponseEntity<String> inserirProducte(@RequestBody ProductDTO productDTO) {
-        if (productDTO.getDescCategoria() == null || productDTO.getDescSubcategoria() == null) {
+        if (productDTO.getDesccategoria() == null || productDTO.getDescsubcategoria() == null) {
             return ResponseEntity.badRequest().body("El producto debe tener categoría y subcategoría válidas.");
         }
         productService.save(productDTO);

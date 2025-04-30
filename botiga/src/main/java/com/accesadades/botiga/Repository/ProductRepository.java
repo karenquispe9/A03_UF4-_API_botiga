@@ -12,6 +12,7 @@ import com.accesadades.botiga.DomainModel.SubCategoria;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+    @Override
     Optional<Product> findById(Long id);
 
     Product findByName(String name);

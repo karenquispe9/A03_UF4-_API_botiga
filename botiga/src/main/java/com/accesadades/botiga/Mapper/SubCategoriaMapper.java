@@ -2,27 +2,25 @@ package com.accesadades.botiga.Mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.ReportingPolicy;
 
 import com.accesadades.botiga.DTO.SubCategoriaDTO;
+import com.accesadades.botiga.DomainModel.Categoria;
 import com.accesadades.botiga.DomainModel.SubCategoria;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface SubCategoriaMapper {
 
-    SubCategoriaMapper INSTANCE = Mappers.getMapper(SubCategoriaMapper.class);
+    @Mapping(target = "categoria", source = "categoriaId")
+    SubCategoria subCategoriaDTOToSubCategoria(SubCategoriaDTO dto);
 
-    @Mapping(target = "descSubcategoria", source = "descSubcategoria")
-    @Mapping(target = "statusSubcategoria", source = "statusSubcategoria")
-    @Mapping(target = "descCategoria", source = "categoria.descCategoria")
-    @Mapping(target = "statusCategoria", source = "categoria.statusCategoria")
     SubCategoriaDTO subCategoriaToSubCategoriaDTO(SubCategoria subCategoria);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "creationAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "categoria", ignore = true)
-    @Mapping(target = "descSubcategoria", source = "descSubcategoria")
-    @Mapping(target = "statusSubcategoria", source = "statusSubcategoria")
-    SubCategoria subCategoriaDTOToSubCategoria(SubCategoriaDTO subCategoriaDTO);
+    // este método extra lo usa MapStruct internamente
+    default Categoria map(Long categoriaId) {
+        if (categoriaId == null) return null;
+        Categoria categoria = new Categoria();
+        categoria.setId(categoriaId);
+        return categoria;
+    }
 }

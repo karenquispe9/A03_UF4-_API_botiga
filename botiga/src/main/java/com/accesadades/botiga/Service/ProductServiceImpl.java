@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accesadades.botiga.DTO.ProductDTO;
+import com.accesadades.botiga.DomainModel.Categoria;
 import com.accesadades.botiga.DomainModel.Product;
+import com.accesadades.botiga.DomainModel.SubCategoria;
 import com.accesadades.botiga.Mapper.ProductMapper;
+import com.accesadades.botiga.Repository.CategoriaRepository;
 import com.accesadades.botiga.Repository.ProductRepository;
+import com.accesadades.botiga.Repository.SubCategoriaRepository;
 
 @Service
 public class ProductServiceImpl implements BotigaService<ProductDTO, Long> {
@@ -20,6 +24,13 @@ public class ProductServiceImpl implements BotigaService<ProductDTO, Long> {
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private SubCategoriaRepository subCategoriaRepository;
+
 
     @Override
     public List<ProductDTO> findAll() {
@@ -35,17 +46,27 @@ public class ProductServiceImpl implements BotigaService<ProductDTO, Long> {
                 .map(productMapper::productToProductDTO);
     }
 
-    @Override
-    public void save(ProductDTO productDTO) {
-        Product product = productMapper.productDTOToProduct(productDTO);
+   @Override
+public void save(ProductDTO productDTO) {
+    // Buscar la categoría por descripción
+    Categoria categoria = categoriaRepository.findByDescCategoria(productDTO.getDesccategoria())
+        .orElseThrow(() -> new IllegalArgumentException("Categoria no trobada: " + productDTO.getDesccategoria()));
 
-        // Validaciones de negocio: asegurar que categoría y subcategoría existen
-        if (product.getCategoria() == null || product.getSubcategoria() == null) {
-            throw new IllegalArgumentException("El producto debe tener categoría y subcategoría válidas.");
-        }
+    // Buscar la subcategoría por descripción
+    SubCategoria subcategoria = subCategoriaRepository.findByDescSubcategoria(productDTO.getDescsubcategoria())
+        .orElseThrow(() -> new IllegalArgumentException("Subcategoria no trobada: " + productDTO.getDescsubcategoria()));
 
-        productRepository.save(product);
-    }
+    // Mapear DTO a entidad
+    Product product = productMapper.productDTOToProduct(productDTO);
+
+    // Asignar relaciones
+    product.setCategoria(categoria);
+    product.setSubcategoria(subcategoria);
+
+    // Guardar
+    productRepository.save(product);
+}
+
 
     @Override
     public void deleteById(Long id) {

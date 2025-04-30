@@ -46,7 +46,7 @@ public class WebController {
     @GetMapping("/newproduct")
         public String mostrarFormularioNuevoProducto(Model model) {
             model.addAttribute("product", new ProductDTO());
-            return "new_product";  
+            return "newproduct";  
     }
 
     @PostMapping("/inserirProducte")
