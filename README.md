@@ -1,4 +1,5 @@
 # A03_UF4-_API_botiga
+![image](https://github.com/user-attachments/assets/34655883-5c69-4628-9d20-8ee3190ece60)
 
 ## POST=======================================================
 ### Inserir categoria -------------------
