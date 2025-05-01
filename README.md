@@ -15,6 +15,20 @@
 
 ![image](https://github.com/user-attachments/assets/7f3d9b26-55bb-402c-85cb-e1783ab6a902)
 
+
+## PUT =======================================================
+
+### Editar el nom de un producte -------------------
+![image](https://github.com/user-attachments/assets/5e806318-aaf2-4610-b44c-bafcd343250e)
+![image](https://github.com/user-attachments/assets/fd1a21a5-7bf5-4b55-8075-170153a6543e)
+
+
+### Editar el preu de un producte -------------------
+![image](https://github.com/user-attachments/assets/57967d2c-9c03-4a3d-a54f-ee90554faba3)
+![image](https://github.com/user-attachments/assets/f8f1ca0e-70d6-4ec6-aa67-723c1f9c0dd9)
+
+
+
 ## DELETE =======================================================
 ![image](https://github.com/user-attachments/assets/b1b0fbbe-b1a5-4e08-9c8d-f5506a1045e8)
 
